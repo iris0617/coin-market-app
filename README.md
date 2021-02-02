@@ -6,8 +6,10 @@ An application to track cryptocurrency prices (NOT in real-time).
 
 See it in Action :
 Demo.gif (Don't know why it became slo-mo after converting to gif :|)
+![Demo](https://github.com/iris0617/coin-market-app/blob/master/Demo.gif)
 
 Things I'll add if I have more time :)
 1. Setting dynamic display limit and options to load more
 2. More error handling and error message display on UI
 3. Unit test cases :)
+
