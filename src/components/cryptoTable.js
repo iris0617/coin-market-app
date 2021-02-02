@@ -15,8 +15,8 @@ const CryptoTable = () => {
    
    return (
       <React.Fragment>
-         {symbolsError && symbolsError.length>0 && <Alert color="error">symbolsError</Alert>}
-         {quotesError && quotesError.length>0 && <Alert color="error">quotesError</Alert>}
+         {symbolsError && symbolsError.length>0 && <Alert color="error">{symbolsError.join(', ')}</Alert>}
+         {quotesError && quotesError.length>0 && <Alert color="error">{quotesError.join(', ')}</Alert>}
          <Table>
             <TableHead>
                <TableRow>
