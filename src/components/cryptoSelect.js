@@ -1,14 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { Select } from '@material-ui/core';
 import SymbolContext from './symbolContext';
-import { MenuItem } from '@material-ui/core';
 
 const CryptoSelect = () => {
     const [selectedSymbol, setSelectedSymbol] = useState('');
     const { symbolsList, visibleSymbolIds, setVisibleSymbolIds } = useContext(SymbolContext);
     
     const handleSelect = (e) => {
-        const selectedId = parseInt(e.target.value);
+        let selectedId;
+        if(e.target.value !== ''){
+            selectedId = parseInt(e.target.value);
+        }
         setVisibleSymbolIds([...visibleSymbolIds, selectedId]);
         setSelectedSymbol(selectedId);
     }

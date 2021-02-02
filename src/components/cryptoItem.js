@@ -6,6 +6,7 @@ import { Badge } from '@material-ui/core';
 import { getQuotesListSuccess, setQuotesListError } from '../actions/quotes';
 import { fetchQuotesInfo } from '../thunks/quotesThunk';
 import SymbolContext from './symbolContext';
+import QuoteContext from './quoteContext';
 
 const CryptoItem = ({ symbol, getQuotesListSuccess, quotesInfoList }) => {
     
@@ -16,7 +17,6 @@ const CryptoItem = ({ symbol, getQuotesListSuccess, quotesInfoList }) => {
     useEffect(() => {
         fetchQuotesInfo(symbol.id, getQuotesListSuccess, setQuotesListError);
     }, []);
-
 
     useEffect(() => {
         if(quotesInfoList && quotesInfoList[symbol.id] && quotesInfoList[symbol.id].cmc_rank){
@@ -34,16 +34,19 @@ const CryptoItem = ({ symbol, getQuotesListSuccess, quotesInfoList }) => {
 
 
     return (
-        <React.Fragment>
-            <TableCell>{symbol.symbol} </TableCell>
-            <TableCell>{rank ? `${rank}` : <Badge color="error"> N/A</Badge>} </TableCell>
-            <TableCell>{quotePrice ? `${quotePrice}` : <Badge color="error">N/A</Badge>} </TableCell>
-            <TableCell><Button variant="contained" disabled={visibleSymbolIds.length === 1} color="primary" value={symbol.id} onClick={handleDelete}>Delete</Button></TableCell>
-        </React.Fragment>
+        <QuoteContext.Provider value={{ quotesInfoList }}>
+            <React.Fragment>
+                <TableCell>{symbol.symbol} </TableCell>
+                <TableCell>{rank ? `${rank}` : <Badge color="error"> N/A</Badge>} </TableCell>
+                <TableCell>{quotePrice ? `${quotePrice}` : <Badge color="error">N/A</Badge>} </TableCell>
+                <TableCell><Button variant="contained" disabled={visibleSymbolIds.length === 1} color="primary" value={symbol.id} onClick={handleDelete}>Delete</Button></TableCell>
+            </React.Fragment>
+        </QuoteContext.Provider>
+ 
     )
 };
 
-const mapStateToProps = state => ({ quotesInfoList : state.quotesInfoList })
+const mapStateToProps = state => ({ quotesInfoList : state.quotesInfoList.list })
 
 export default connect(mapStateToProps, {
     getQuotesListSuccess

@@ -6,7 +6,7 @@ import SymbolContext from './symbolContext';
 import CryptoTable from './cryptoTable';
 import CryptoSelect from './cryptoSelect';
 
-const CryptoMarket = ({ symbolsList, getSymbolListSuccess, setSymbolListError }) => {
+const CryptoMarket = ({ symbolsList, symbolsError, quotesError, getSymbolListSuccess, setSymbolListError }) => {
    
    const [ visibleSymbolIds, setVisibleSymbolIds ] = useState([]);
    
@@ -16,7 +16,9 @@ const CryptoMarket = ({ symbolsList, getSymbolListSuccess, setSymbolListError })
 
    
    return (
-      <SymbolContext.Provider value={{ symbolsList, visibleSymbolIds, setVisibleSymbolIds, getSymbolListSuccess, setSymbolListError }}>
+      <SymbolContext.Provider 
+         value={{ symbolsList, symbolsError, quotesError, visibleSymbolIds, setVisibleSymbolIds, getSymbolListSuccess, setSymbolListError }}
+      >
       <div>
          <CryptoSelect />
          <CryptoTable />
@@ -25,7 +27,7 @@ const CryptoMarket = ({ symbolsList, getSymbolListSuccess, setSymbolListError })
    )
 };
 
-const mapStateToProps = state => ({ symbolsList: state.symbolsList })
+const mapStateToProps = state => ({ symbolsList: state.symbolsList.list, symbolsError: state.symbolsList.error, quotesError: state.quotesInfoList.error })
 
 export default connect(mapStateToProps, {
     getSymbolListSuccess, 

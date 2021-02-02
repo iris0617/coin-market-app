@@ -7,7 +7,7 @@ export const fetchQuotesInfo = async (id, quotesSuccessDispatch, quotesErrorDisp
         if(response && response.data){
             quotesSuccessDispatch(response.data);
         }
-    }catch{
-        quotesErrorDispatch('error');
+    }catch(e){
+        quotesErrorDispatch(e.message);
     }
 } 
