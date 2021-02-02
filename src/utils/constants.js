@@ -7,3 +7,4 @@ export const quotesActions = {
     GET_QUOTE_INFO_SUCCESS: 'GET_QUOTE_INFO_SUCCESS',
     SET_QUOTE_INFO_ERROR: 'SET_QUOTE_INFO_ERROR'
 };
+
