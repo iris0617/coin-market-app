@@ -5,9 +5,9 @@ const initialState={ list: [], error: [] };
 const SymbolReducer = (state=initialState, action) => {
     switch(action.type){
         case symbolActions.GET_SYMBOL_LIST_SUCCESS:
-            return { list: action.payload, error: []};
+            return { ...state, list: action.payload, error: []};
         case symbolActions.SET_SYMBOL_LIST_ERROR:
-            return { list: [], error: [...state.error, action.payload]}
+            return { ...state, list: [], error: [...state.error, action.payload]}
         
         default:
             return state;
