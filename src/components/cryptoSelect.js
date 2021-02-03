@@ -10,8 +10,8 @@ const CryptoSelect = () => {
         let selectedId;
         if(e.target.value !== ''){
             selectedId = parseInt(e.target.value);
+            setVisibleSymbolIds([...visibleSymbolIds, selectedId]);
         }
-        setVisibleSymbolIds([...visibleSymbolIds, selectedId]);
     }
 
     return (
