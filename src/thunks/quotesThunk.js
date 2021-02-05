@@ -7,6 +7,9 @@ export const fetchQuotesInfo = async (id, quotesSuccessDispatch, quotesErrorDisp
         if(response && response.data){
             quotesSuccessDispatch(response.data);
         }
+        else if(response && response.status && response.status.error_message !== null){
+            quotesErrorDispatch(`${response.status.error_code}: ${response.status.error_message}`)
+        }
     }catch(e){
         quotesErrorDispatch(e.message);
     }

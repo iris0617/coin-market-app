@@ -11,6 +11,9 @@ export const fetchSymbolsList = async (symbolSuccessDispatch, symbolErrorDispatc
             setVisibleSymbolIds(visibleSymbolId);
         }
        else if(response && response.data && Array.isArray(response.data)) symbolSuccessDispatch(response.data);
+       else if(response && response.status && response.status.error_message !==null){
+           symbolErrorDispatch(`${response.status.error_code}: ${response.status.error_message}`)
+       }
     }catch(e){
         symbolErrorDispatch(e.message);
     }
